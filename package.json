@@ -2,6 +2,9 @@
   "name": "react-native-scaffold",
   "version": "1.0.0",
   "description": "",
+  "bin": {
+    "rns": "./bin/rns.js"
+  },
   "main": "index.js",
   "scripts": {
     "publish": "node bin/publish",
