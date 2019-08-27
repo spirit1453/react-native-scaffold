@@ -13,8 +13,7 @@
   ],
   "main": "generators/app/index.js",
   "keywords": [
-    "",
-    "yeoman-generator"
+
   ],
   "devDependencies": {
     "yeoman-test": "^1.7.0",

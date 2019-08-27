@@ -7,15 +7,14 @@ module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
     this.log(
-      yosay(`Welcome to the shining ${chalk.red('generator-app')} generator!`)
+      `Welcome to the react-native template generator!`
     );
 
     const prompts = [
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        type: 'input',
+        name: 'name',
+        message: `What is your app's name?`
       }
     ];
 
@@ -29,10 +28,17 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('dummyfile.txt'),
       this.destinationPath('dummyfile.txt')
-    );
+    )
+    this.fs.copy(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json')
+    )
   }
 
   install() {
-    this.installDependencies();
+    this.installDependencies({
+      bower: false,
+      npm: true
+    })
   }
 };
