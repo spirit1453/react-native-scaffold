@@ -1,0 +1,13 @@
+# idea
+.idea/*
+!*.iml
+
+# custom
+local
+
+# node
+node_modules
+
+# mac
+.DS_Store
+._*
