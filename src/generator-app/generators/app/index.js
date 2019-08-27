@@ -80,7 +80,7 @@ module.exports = class extends Generator {
           message: `Which way do you want to start the project?`,
           choices: ['npm run start:ios',
             'npm run start:ios:android',
-            'xed ios'
+            'npm run xcode'
           ]
         }
       ])

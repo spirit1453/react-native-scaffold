@@ -6,11 +6,22 @@
     "start": "npm run start:ios",
     "start:ios": "node bin/startIOS",
     "start:android": "react-native run-android",
+    "xcode": "xed ios",
     "packager": "react-native start",
     "lint": "eslint --fix --ext .js .",
+    "showDevMenu": "adb shell input keyevent 82",
+    "pack:ios": "node bin/packIOS",
+    "pack:ppk": "node bin/packPPK",
+    "pack:android": "node bin/packAndroid",
+    "pack:all": "npm run pack:ppk && npm run pack:android && npm run pack:ios",
+    "jsBundle": " react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
+    "updateSubmodule": "git submodule update --remote && git submodule update",
+    "init": "git submodule init && git submodule update --remote && yarn",
     "test": "jest"
   },
   "dependencies": {
+    "lodash": "^4.17.15",
+    "native-base": "^2.13.5",
     "react": "16.8.6",
     "react-native": "0.60.5"
   },
@@ -18,12 +29,14 @@
     "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@react-native-community/eslint-config": "^0.0.5",
+    "chalk": "^2.4.2",
     "babel-jest": "^24.9.0",
     "eslint": "^6.2.2",
+    "inquirer": "^7.0.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
     "react-test-renderer": "16.8.6",
-    "inquirer": "^7.0.0"
+    "fs-extra": "^8.1.0"
   },
   "jest": {
     "preset": "react-native"

@@ -1,15 +1,15 @@
 /* eslint-disable no-process-exit */
-const {CliUtil} = require('@ys/collection')
 const childProcess = require('child_process')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const verbose = require('debug')('verbose')
 const {FuncUtil} = require('@ys/vanilla')
+const path = require('path')
 
-const config = require('../config/devConfig')
+const rootDir = path.resolve(__dirname, '../')
 
-const {udid} = config
-const {timeCount} = FuncUtil
+const devConfig = require('../config/devConfig')
+
+const {udid} = devConfig
 const {getAllTarget} = require('./util')
 
 start()
@@ -17,7 +17,7 @@ start()
 async function start() {
   let deviceUdid
 
-  // config in the config file
+  // config in the devConfig file
   if (udid) {
     deviceUdid = udid
   } else {
@@ -41,7 +41,6 @@ async function start() {
           }
         }]
         const answer = await inquirer.prompt(question)
-        verbose({answer})
         deviceUdid = answer.udid
       }
     } else {
@@ -86,4 +85,47 @@ function getUdid(str) {
   const ary = str.match(/\[(([a-z]|[0-9]){40})]/)
 
   return ary[1]
+}
+
+async function timeCount (func) {
+  const shouldFormat = true
+  const shouldLog = true
+  const start = Date.now()
+  func()
+
+  let result = Date.now() - start
+  if (shouldFormat) {
+    const ms = result % 1000
+    const sCount = Math.floor(result / 1000)
+    const s = sCount % 60
+    const minCount = Math.floor(sCount / 60)
+    let minStr = ''
+    let sStr = ''
+    if (minCount) {
+      minStr = `${minCount}min-`
+    }
+    if (s) {
+      sStr = `${s}s-`
+    }
+    result = `${minStr}${sStr}${ms}ms`
+  }
+  if (shouldLog) {
+    console.log(`time elapsed: ${result}`)
+  }
+  return result
+}
+
+function getAllTarget() {
+  let result = []
+  const iosFolder = path.resolve(rootDir, 'ios')
+  const output = childProcess.execSync(`xcodebuild -list`, {
+    cwd: iosFolder
+  }).toString()
+  const regex = /Targets:((?:.|\n)*)Build Configurations:/
+  const matchedAry = output.match(regex)
+  if (matchedAry) {
+    const captured = matchedAry[1]
+    result = captured.split('\n').map(ele => ele.trim()).filter(ele => ele)
+  }
+  return result
 }
