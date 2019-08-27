@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "publish": "node bin/publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,9 +19,11 @@
   },
   "homepage": "https://github.com/spirit1453/react-native-scaffold#readme",
   "dependencies": {
-    "yo": "^3.1.0",
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "moment": "^2.24.0",
+    "semver": "^6.3.0",
+    "yeoman-generator": "^2.0.1",
+    "yo": "^3.1.0",
     "yosay": "^2.0.1"
   },
   "devDependencies": {
