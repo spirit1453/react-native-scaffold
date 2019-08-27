@@ -26,7 +26,7 @@ const obj = {
 
 fs.writeFileSync(appJsonPath, JSON.stringify(obj))
 
-const cmd = `ys git`
+const cmd = `ys git ${newVer}`
 childProcess.execSync(cmd, {
     stdio: 'inherit'
 })

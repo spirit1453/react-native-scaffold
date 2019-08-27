@@ -22,6 +22,7 @@
     "chalk": "^2.1.0",
     "moment": "^2.24.0",
     "semver": "^6.3.0",
+    "yargs": "^14.0.0",
     "yeoman-generator": "^2.0.1",
     "yo": "^3.1.0",
     "yosay": "^2.0.1"
