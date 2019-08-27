@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "start": "npm run start:ios",
+    "start:ios": "node bin/startIOS",
+    "start:android": "react-native run-android",
+    "packager": "react-native start",
+    "lint": "eslint --fix --ext .js .",
+    "test": "jest"
   },
   "dependencies": {
     "react": "16.8.6",
@@ -19,7 +22,8 @@
     "eslint": "^6.2.2",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
-    "react-test-renderer": "16.8.6"
+    "react-test-renderer": "16.8.6",
+    "inquirer": "^7.0.0"
   },
   "jest": {
     "preset": "react-native"

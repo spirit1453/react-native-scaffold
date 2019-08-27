@@ -78,8 +78,8 @@ module.exports = class extends Generator {
           type: 'list',
           name: 'cmd',
           message: `Which way do you want to start the project?`,
-          choices: ['react-native run-android',
-            'react-native run-ios',
+          choices: ['npm run start:ios',
+            'npm run start:ios:android',
             'xed ios'
           ]
         }
