@@ -27,19 +27,25 @@ module.exports = class extends Generator {
   writing() {
     fs.readdirSync(path.resolve(__dirname, 'templates')).forEach(ele => {
       const copyAry = ['ios']
-      if (copyAry.includes(ele)) {
-        this.fs.copy(
-          this.templatePath(ele),
-          this.destinationPath(ele)
-        )
-      } else {
-        this.fs.copyTpl(
-          this.templatePath(ele),
-          this.destinationPath(ele),
-          {
-            appName: this.props.appName
-          }
-        )
+
+      const tempPath = this.templatePath(ele)
+
+      if (!fs.statSync(tempPath).isDirectory() || fs.readdirSync(tempPath).length) {
+
+        if (copyAry.includes(ele)) {
+          this.fs.copy(
+            tempPath,
+            this.destinationPath(ele)
+          )
+        } else {
+          this.fs.copyTpl(
+            this.templatePath(ele),
+            this.destinationPath(ele),
+            {
+              appName: this.props.appName
+            }
+          )
+        }
       }
     })
   }
