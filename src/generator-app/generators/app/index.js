@@ -13,21 +13,23 @@ module.exports = class extends Generator {
     const prompts = [
       {
         type: 'input',
-        name: 'name',
+        name: 'appName',
         message: `What is your app's name?`
       }
     ];
 
     return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
       this.props = props;
-    });
+    })
   }
 
   writing() {
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('package.json'),
-      this.destinationPath('package.json')
+      this.destinationPath('package.json'),
+      {
+        appName: this.props.appName
+      }
     )
   }
 
