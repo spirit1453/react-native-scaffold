@@ -2,7 +2,6 @@
 const childProcess = require('child_process')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const {FuncUtil} = require('@ys/vanilla')
 const path = require('path')
 
 const rootDir = path.resolve(__dirname, '../')
