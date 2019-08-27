@@ -15,7 +15,8 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'appName',
-        message: `What is your app's name?`
+        message: `What is your app's name?`,
+        default: path.basename(process.cwd())
       }
     ]
 
@@ -85,7 +86,7 @@ module.exports = class extends Generator {
           name: 'cmd',
           message: `Which way do you want to start the project?`,
           choices: ['npm run start:ios',
-            'npm run start:ios:android',
+            'npm run start:android',
             'npm run xcode'
           ]
         }

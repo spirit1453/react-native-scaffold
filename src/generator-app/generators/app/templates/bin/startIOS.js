@@ -10,7 +10,6 @@ const rootDir = path.resolve(__dirname, '../')
 const devConfig = require('../config/devConfig')
 
 const {udid} = devConfig
-const {getAllTarget} = require('./util')
 
 start()
 
@@ -47,7 +46,24 @@ async function start() {
       const warnStr = 'No device detected! Please connect your device through USB '
         + 'and trust this computer'
       console.log(chalk.blue(warnStr))
-      process.exit(0)
+
+      const question = [
+        {
+          type: 'confirm',
+          name: 'startSimulator',
+          message: 'Do you want to open app in Simulator?',
+          default: false
+        }
+      ]
+      const {startSimulator} = await inquirer.prompt(question)
+      if (startSimulator) {
+        const cmd = `react-native run-ios`
+        childProcess.execSync(cmd, {
+          stdio: 'inherit',
+          cwd: process.cwd()
+        })
+      }
+      return
     }
   }
   const targetAry = getAllTarget().sort((ele) => {
