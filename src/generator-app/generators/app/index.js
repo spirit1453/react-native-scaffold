@@ -49,6 +49,12 @@ module.exports = class extends Generator {
       bower: false,
       npm: false,
       yarn: true
+    }).then(() => {
+      const cmd = `pod install`
+      childProcess.execSync(cmd, {
+        stdio: 'inherit',
+        cwd: path.resolve(process.cwd(), 'ios')
+      })
     })
   }
 
