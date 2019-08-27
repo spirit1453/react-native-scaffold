@@ -67,8 +67,20 @@ module.exports = class extends Generator {
     const {shouldStart} = await this.prompt(prompts)
 
     if (shouldStart) {
-      const cmd = `react-native run-android`
+      const {cmd} = await this.prompt([
+        {
+          type: 'list',
+          name: 'cmd',
+          message: `Which way do you want to start the project?`,
+          choices: ['react-native run-android',
+            'react-native run-ios',
+            'xed ios'
+          ]
+        }
+      ])
+
       console.log(`exec: ${chalk.blue(cmd)}`)
+
       childProcess.execSync(cmd, {
         stdio: 'inherit'
       })
